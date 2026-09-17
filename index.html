@@ -44,6 +44,8 @@
   }
   .logo-badge .num { font-size: 30px; color: var(--gold-2); letter-spacing: 1px; }
   .logo-badge .lion { font-size: 34px; line-height: 1.1; }
+  .logo-badge img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; display: block; }
+  .logo-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; }
   .hero h1 { font-size: clamp(26px, 5vw, 40px); letter-spacing: .5px; }
   .hero h1 .gold { color: var(--gold); }
   .hero .sub { color: var(--muted); margin-top: 4px; }
@@ -103,8 +105,12 @@
 <div class="wrap">
   <header class="hero">
     <div class="logo-badge" id="logo" title="Megiddo Lions">
-      <div class="lion">🦁</div>
-      <div class="num">18833</div>
+      <img src="logo.png" alt="Megiddo Lions logo"
+           onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'">
+      <div class="logo-fallback" id="logo-fallback">
+        <div class="lion">🦁</div>
+        <div class="num">18833</div>
+      </div>
     </div>
     <div>
       <h1>Megiddo <span class="gold">Lions</span></h1>

@@ -65,6 +65,7 @@ platform profile pages (avatars can be pulled from them):
 
 | Source | Link | Status |
 |---|---|---|
+| **Team logo file** | `logo.png` (repo root, used by the website hero with automatic fallback badge) | ✅ added by the team |
 | FIRST official team page | https://ftc-events.firstinspires.org/2025/team/18833 | ✅ verified |
 | The Orange Alliance | https://theorangealliance.org/teams/18833 | ✅ verified |
 | FTC-Link (scouting/stats) | https://ftc-link.org/teams/18833 | ✅ linked (blocked from this sandbox, normal) |
