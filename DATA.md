@@ -33,9 +33,9 @@ When building the **Megiddo Lions website**, the agent MUST:
 3. Keep the auto-update pair working: `update_team_data.py` + `.github/workflows/update-data.yml` (weekly cron).
 4. After adding new data (team members, photos, social links, etc.), extend `update_team_data.py` so the new data
    stays auto-updated too.
-5. Team-provided facts that FIRST's site cannot confirm (e.g. the **2019 FIRST Global Challenge Dubai — 2nd place
-   in the world**, which predates the FTC rookie year) live in §4/§6 and must **not** be deleted when regenerating
-   data — the updater only rewrites §5.
+5. Team-provided facts that FIRST's site cannot confirm (e.g. the **claimed 2nd-place finish at the 2019 FIRST
+   Global Challenge in Dubai** — the participation itself *is* verified) live in §4/§6 and must **not** be deleted
+   when regenerating data — the updater only rewrites §5.
 6. Serve the site with **GitHub Pages** from the repo root (no build step needed) — settings → Pages → Deploy from
    branch → `main` → `/ (root)`.
 
@@ -76,7 +76,7 @@ platform profile pages (avatars can be pulled from them):
 
 ## 4. Achievements — season by season
 
-- **2019 FIRST Global Challenge — Dubai, UAE** — 🥈 **2nd place in the world.** The school's delegation finished second in the world at the FIRST Global Challenge 2019 in Dubai (national-team international competition; predates the FTC team's 2020 rookie year — team-provided result).
+- **2019 FIRST Global Challenge — Dubai, UAE (Oct 24–27)** — 🇮🇱 **Team Israel was the Megiddo Lions** (FTC 12797 + FRC 5038, Megiddo Regional high school) — ✅ verified via FIRST Global's official team page (first.global/2019-nations/israel-2019). 📌 The claim of a **2nd-place-in-the-world finish is team-provided and not independently verified**: archived official rankings list no team names and no public 2019 results document has been found. Treat as a claim until a source (photo, video, article) confirms it.
 - **2020 ULTIMATE GOAL** — rookie season, no official events (COVID remote year). Recognition: *Top Ranked 3rd Place* at Israel FTC Scrimmage #2 REMOTE.
 - **2021 FREIGHT FRENZY** — 🏆 **Israel Championship — Ashram Division CHAMPIONS** (event champions), **Inspire Award 2nd Place** at the Israel Championship, **Finalist Alliance 1st Team Selected** at the Israel Championship, **Design Award** at the Israel Championship, **Winning Alliance Captain** at Israel ISR Scrimmage #2.
 - **2022 POWERPLAY** — 🏆 **Inspire Award 1st Place at the Israel Championship** (Israel's highest team award → invited to the FIRST World Championship, Houston, April 2023), Solar Division Finalist Alliance Captain, ranked 2nd in Solar Division qualifications; competed at the **FIRST World Championship Houston 2023 — Franklin Division** (rank 23 of 48).
@@ -87,7 +87,7 @@ platform profile pages (avatars can be pulled from them):
 ### "Did they win the world championship?" — the answer
 
 **No.** Team 18833 has **never won the FTC World Championship**. Their best international results are:
-- **2019:** 🥈 **2nd place in the world — FIRST Global Challenge, Dubai** (the school's delegation, one year before the FTC team was founded; team-provided result).
+- **2019:** 🇮🇱 **Team Israel at the FIRST Global Challenge, Dubai = the Megiddo Lions** (FTC 12797 + FRC 5038) — verified. The reported **2nd place in the world** remains a **team-provided claim, not independently verified**.
 - **2021:** 🏆 **Champions of the Israel Championship, Ashram Division** (division of the national championship — *not* the World Championship).
 - **2022:** 🏆 **Inspire Award, Israel Championship** (Israel's highest honor; earned a spot at the **World Championship in Houston 2023**, where they competed in the Franklin Division and finished qualifications ranked **23rd of 48 teams**, no playoff appearance).
 - **2024:** invited to the **European Premier Event** (a strong inter-regional off-season event, ~48 teams), Control Award 3rd place, rank 10 of 48 in Escher Division quals.
@@ -172,7 +172,8 @@ Best-of-all-time summary (verify against Section 5):
 
 | Ranking question | Answer |
 |---|---|
-| Best international result | 🥈 **2nd place in the world** — FIRST Global Challenge, Dubai 2019 (team-provided) |
+| Best international appearance | 🇮🇱 Team Israel — FIRST Global Challenge, Dubai 2019 (verified: the Megiddo Lions, FTC 12797 + FRC 5038) |
+| Claimed placement there | 📌 2nd place in the world — **team-provided, unverified** |
 | Best national (Israel) result | 🏆 Israel Championship Ashram Division **Champions** (2021) |
 | Best national award | 🏆 **Inspire Award 1st Place**, Israel Championship (2022) |
 | World Championship appearances | 1 — Houston 2023 (Franklin Division, quals rank 23/48) |
@@ -184,8 +185,10 @@ Best-of-all-time summary (verify against Section 5):
 - FIRST official FTC events pages, per season: `https://ftc-events.firstinspires.org/<SEASON>/team/18833`
   (team profile: location, region, rookie year, sponsors; event list with awards, match records, ranks).
 - The Orange Alliance team page: `https://theorangealliance.org/teams/18833`.
-- **2019 Dubai result (2nd place in the world, FIRST Global Challenge): provided by the team** — it predates
-  the FTC team's rookie year, so it does not appear in FIRST's FTC records.
+- **2019 Dubai (FIRST Global Challenge):** Team Israel = Megiddo Lions (FTC 12797 + FRC 5038) — ✅ verified from
+  FIRST Global's official team page: `https://first.global/2019-nations/israel-2019/` (archived). The reported
+  **2nd-place-in-the-world placement is team-provided and NOT independently verified** (official rankings archives
+  carry no team names; no public results document found — checked 2026-09-17).
 - All FTC facts above were verified against those sources on **2026-09-17**.
 
 ## 8. Website
