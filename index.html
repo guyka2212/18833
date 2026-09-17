@@ -3,140 +3,265 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Team 18833 — Megiddo Lions</title>
-<meta name="description" content="FIRST Tech Challenge Team 18833 Megiddo Lions — Megiddo Regional Council, Israel. Auto-updated from DATA.md." />
+<title>Megiddo Lions — FTC 18833</title>
+<meta name="description" content="Megiddo Lions, FIRST Tech Challenge team 18833. Megiddo Regional Council, Israel. Team record, awards and season history, kept current from DATA.md." />
+<meta name="theme-color" content="#F7F5F0" />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 <style>
+  /* ------------------------------------------------------------
+     Megiddo Lions — team site
+     Single accent color, editorial layout, tabular data.
+     All content is parsed from DATA.md at runtime (see script
+     at the bottom of this file). Nothing here is hard-coded.
+     ------------------------------------------------------------ */
   :root {
-    --bg: #0b0f1a;
-    --panel: #121a2b;
-    --panel-2: #182338;
-    --text: #e8edf7;
-    --muted: #93a1b8;
-    --gold: #f5b83d;
-    --gold-2: #ffd97a;
-    --accent: #4da3ff;
-    --line: #263450;
+    --paper: #F7F5F0;
+    --surface: #FFFFFF;
+    --ink: #171310;
+    --muted: #6E675C;
+    --line: #DCD6C9;
+    --line-strong: #171310;
+    --accent: #B23A17;
+    --accent-ink: #8A2C10;
+    --maxw: 1040px;
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
   body {
-    background: radial-gradient(1200px 600px at 80% -10%, #1a2b4a 0%, var(--bg) 55%);
-    color: var(--text);
-    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
-    min-height: 100vh;
-    line-height: 1.55;
-  }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px 64px; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  /* Hero */
-  header.hero {
-    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
-    padding: 28px; background: linear-gradient(135deg, var(--panel), var(--panel-2));
-    border: 1px solid var(--line); border-radius: 18px;
-  }
-  .logo-badge {
-    width: 110px; height: 110px; border-radius: 26px; flex: 0 0 auto;
-    background: linear-gradient(145deg, #2a1c05, #4a3008);
-    border: 2px solid var(--gold);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    font-weight: 800; box-shadow: 0 6px 24px rgba(245, 184, 61, .25);
-  }
-  .logo-badge .num { font-size: 30px; color: var(--gold-2); letter-spacing: 1px; }
-  .logo-badge .lion { font-size: 34px; line-height: 1.1; }
-  .logo-badge img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; display: block; }
-  .logo-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; }
-  .hero h1 { font-size: clamp(26px, 5vw, 40px); letter-spacing: .5px; }
-  .hero h1 .gold { color: var(--gold); }
-  .hero .sub { color: var(--muted); margin-top: 4px; }
-  .hero .updated { margin-top: 10px; font-size: 13px; color: var(--muted); }
-  .hero .updated b { color: var(--gold-2); font-weight: 600; }
-
-  section { margin-top: 28px; }
-  h2 {
-    font-size: 20px; text-transform: uppercase; letter-spacing: 2px;
-    color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
-  }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-
-  .card {
-    background: var(--panel); border: 1px solid var(--line);
-    border-radius: 14px; padding: 18px 20px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* Profile grid */
-  .profile { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
-  .profile .cell { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-  .profile .k { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
-  .profile .v { font-size: 16px; font-weight: 600; margin-top: 2px; }
+  ::selection { background: var(--ink); color: var(--paper); }
 
-  /* Links */
-  .links { display: flex; flex-wrap: wrap; gap: 10px; }
-  .links a {
-    background: var(--panel-2); border: 1px solid var(--line); color: var(--text);
-    padding: 8px 14px; border-radius: 999px; font-size: 14px;
+  a { color: inherit; }
+  a:hover { color: var(--accent); }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- header ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
   }
-  .links a:hover { border-color: var(--gold); color: var(--gold-2); text-decoration: none; }
+  .site-header .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .wordmark {
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 900; letter-spacing: .02em; text-transform: uppercase;
+    text-decoration: none; font-size: 15px;
+  }
+  .wordmark img { width: 30px; height: 30px; object-fit: cover; border: 1px solid var(--line-strong); }
+  .site-nav { display: flex; gap: 26px; }
+  .site-nav a {
+    text-decoration: none; font-size: 13px; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  }
+  .site-nav a:hover { color: var(--accent); }
+  @media (max-width: 640px) { .site-nav { display: none; } }
 
-  /* Achievements timeline */
-  .ach { display: grid; gap: 12px; }
-  .ach .item { display: flex; gap: 14px; align-items: flex-start; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
-  .ach .year { flex: 0 0 64px; font-weight: 800; color: var(--gold-2); font-size: 18px; }
-  .ach .txt { color: var(--text); }
-  .ach .txt strong { color: var(--gold-2); }
+  /* ---------- hero ---------- */
+  .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--line); }
+  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; }
+  @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } }
 
-  /* Seasons */
-  .season { margin-bottom: 16px; }
-  .season h3 { color: var(--gold-2); font-size: 17px; margin-bottom: 6px; }
-  .season .record { color: var(--accent); font-weight: 600; font-size: 14px; margin-bottom: 8px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-  .chip { font-size: 13px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; }
-  .chip.award { border-color: var(--gold); color: var(--gold-2); }
-  .chip.rank { color: var(--accent); }
-  .none { color: var(--muted); font-size: 14px; }
+  .kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--accent);
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  }
+  .kicker::after { content: ""; width: 48px; height: 1px; background: var(--accent); }
 
-  footer { margin-top: 40px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 18px; }
-  footer b { color: var(--text); }
-  .error { border-color: #b3413f; background: #2a1414; color: #ffb4b2; padding: 16px; border-radius: 12px; }
-  .skeleton { color: var(--muted); }
+  .hero h1 {
+    font-size: clamp(44px, 8.5vw, 92px);
+    font-weight: 900; line-height: .95; letter-spacing: -.02em;
+    text-transform: uppercase; margin: 0 0 18px;
+  }
+  .hero h1 span { display: block; }
+  .hero .lede { max-width: 46ch; color: var(--muted); font-size: 17px; }
+
+  .crest { width: 224px; height: 224px; background: var(--surface); border: 1px solid var(--line-strong); padding: 10px; }
+  .crest img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @media (max-width: 820px) { .crest { width: 160px; height: 160px; } }
+
+  .facts {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line-strong); margin-top: 48px;
+  }
+  .fact { padding: 18px 20px 4px 0; border-right: 1px solid var(--line); }
+  .fact:last-child { border-right: 0; }
+  .fact dt {
+    font-size: 11px; font-weight: 700; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .fact dd { font-size: 22px; font-weight: 700; font-feature-settings: "tnum"; margin-top: 2px; }
+  @media (max-width: 640px) { .facts { grid-template-columns: repeat(2, 1fr); }
+    .fact { border-bottom: 1px solid var(--line); padding-bottom: 14px; } }
+
+  /* ---------- sections ---------- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 80px; }
+  section:last-of-type { border-bottom: 0; }
+
+  .section-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 28px; }
+  .section-head .no {
+    font-size: 13px; font-weight: 700; color: var(--accent);
+    font-feature-settings: "tnum"; letter-spacing: .08em;
+  }
+  .section-head h2 {
+    font-size: 13px; font-weight: 700; letter-spacing: .22em;
+    text-transform: uppercase;
+  }
+  .section-head::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+  /* profile list */
+  .dl { display: grid; grid-template-columns: 220px 1fr; max-width: 720px; }
+  .dl > div { display: contents; }
+  .dl dt {
+    font-size: 12px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted); padding: 12px 0;
+  }
+  .dl dd { padding: 12px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+  .dl dt { border-bottom: 1px solid var(--line); }
+  .dl div:last-child dt, .dl div:last-child dd { border-bottom: 0; }
+  @media (max-width: 560px) { .dl { grid-template-columns: 1fr; } .dl dt { padding-bottom: 0; border-bottom: 0; } }
+
+  /* achievements rows */
+  .rows { border-top: 1px solid var(--line-strong); }
+  .row {
+    display: grid; grid-template-columns: 88px 1fr; gap: 20px;
+    padding: 16px 0; border-bottom: 1px solid var(--line);
+  }
+  .row .year {
+    font-weight: 900; font-size: 20px; font-feature-settings: "tnum";
+    letter-spacing: -.01em; line-height: 1.3;
+  }
+  .row .body { font-size: 15.5px; }
+  .row .body strong { font-weight: 700; }
+  .row .body em { font-style: italic; color: var(--muted); }
+  @media (max-width: 560px) { .row { grid-template-columns: 56px 1fr; gap: 12px; } .row .year { font-size: 16px; } }
+
+  .aside {
+    margin-top: 32px; padding: 20px 24px;
+    border-left: 3px solid var(--accent); background: var(--surface);
+    max-width: 720px;
+  }
+  .aside .aside-title {
+    font-size: 12px; font-weight: 700; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  }
+  .aside p { font-size: 15.5px; }
+  .aside p + p { margin-top: 8px; }
+
+  /* tables */
+  table { width: 100%; border-collapse: collapse; font-feature-settings: "tnum"; }
+  caption { text-align: left; }
+  thead th {
+    text-align: left; font-size: 11px; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+    padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line-strong);
+  }
+  tbody td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; vertical-align: top; }
+  tbody tr:hover td { background: rgba(23, 19, 16, .025); }
+  td.num { font-weight: 700; white-space: nowrap; }
+  td.season-year { font-weight: 900; font-size: 17px; }
+  td .sub { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .table-scroll { overflow-x: auto; }
+
+  /* links */
+  .linklist { max-width: 720px; border-top: 1px solid var(--line-strong); }
+  .linklist a {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+    text-decoration: none; font-weight: 600; font-size: 15px;
+  }
+  .linklist a span:last-child { color: var(--muted); font-weight: 400; font-size: 13px; white-space: nowrap; }
+  .linklist a:hover span:first-child { color: var(--accent); }
+
+  /* footer */
+  footer { padding: 36px 0 56px; color: var(--muted); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--ink); }
+  footer a:hover { color: var(--accent); }
+
+  .error {
+    border: 1px solid var(--accent); border-left: 3px solid var(--accent);
+    background: var(--surface); padding: 20px 24px; margin: 48px 0;
+  }
+  .skeleton { color: var(--muted); padding: 48px 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="hero">
-    <div class="logo-badge" id="logo" title="Megiddo Lions">
-      <img src="logo.png" alt="Megiddo Lions logo"
-           onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'">
-      <div class="logo-fallback" id="logo-fallback">
-        <div class="lion">🦁</div>
-        <div class="num">18833</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="#top">
+      <img src="logo.png" alt="" onerror="this.style.display='none'" />
+      Megiddo Lions
+    </a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#team">Team</a>
+      <a href="#achievements">Record</a>
+      <a href="#seasons">Seasons</a>
+      <a href="#awards">Awards</a>
+      <a href="#links">Links</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="kicker">FIRST Tech Challenge · Israel</p>
+          <h1><span>Megiddo</span><span>Lions</span></h1>
+          <p class="lede" id="hero-lede">Loading team information…</p>
+        </div>
+        <div class="crest" aria-hidden="true">
+          <img src="logo.png" alt="Megiddo Lions crest" onerror="this.parentElement.style.display='none'" />
+        </div>
       </div>
+      <dl class="facts" id="facts"></dl>
     </div>
-    <div>
-      <h1>Megiddo <span class="gold">Lions</span></h1>
-      <div class="sub" id="hero-sub">FIRST Tech Challenge · Israel</div>
-      <div class="updated" id="updated">Loading data from DATA.md…</div>
-    </div>
-  </header>
+  </div>
 
-  <main id="content"><p class="skeleton">Parsing DATA.md…</p></main>
+  <div id="content"><p class="skeleton">Loading data from DATA.md…</p></div>
+</main>
 
-  <footer id="footer">
-    Data source: <b>DATA.md</b> — auto-updated weekly by GitHub Actions from FIRST's official
-    FTC event pages. Website served by GitHub Pages. First Israel · FIRST Tech Challenge.
-  </footer>
-</div>
+<footer>
+  <div class="wrap">
+    <div>Team data: <a href="DATA.md">DATA.md</a> — regenerated weekly from FIRST's official event pages.</div>
+    <div>Served by GitHub Pages · <span id="footer-updated"></span></div>
+  </div>
+</footer>
 
 <script>
 /* ============================================================
-   Megiddo Lions website — renders everything from DATA.md.
-   DATA.md is the single source of truth (kept auto-updated by
-   update_team_data.py + GitHub Actions). No data is hard-coded
-   here; the parser below must stay compatible with DATA.md's
-   section structure (see instructions in DATA.md §1).
+   Rendering layer. DATA.md is the single source of truth; the
+   parser below must stay compatible with its section structure
+   (see the agent instructions in DATA.md §1).
    ============================================================ */
 
-function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 function mdInline(s) {
   return esc(s)
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
@@ -148,6 +273,8 @@ function section(md, startHeading, nextHeadingRe) {
   const start = md.indexOf(startHeading);
   if (start === -1) return "";
   let rest = md.slice(start + startHeading.length);
+  const lineEnd = rest.indexOf("\n"); // skip the remainder of the heading line
+  if (lineEnd !== -1) rest = rest.slice(lineEnd + 1);
   if (nextHeadingRe) {
     const m = rest.match(nextHeadingRe);
     if (m) rest = rest.slice(0, m.index);
@@ -155,39 +282,35 @@ function section(md, startHeading, nextHeadingRe) {
   return rest;
 }
 
-/* Parse the auto-generated live block (identity + season history). */
 function parseLiveBlock(md) {
   const m = md.match(/<!--\s*BEGIN LIVE TEAM DATA[\s\S]*?([\s\S]*?)<!--\s*END LIVE TEAM DATA/);
   if (!m) return null;
   const block = m[1];
 
   const identity = {};
-  const idPart = block.split("### Season history")[0];
-  idPart.split("\n").forEach((line) => {
+  block.split("### Season history")[0].split("\n").forEach((line) => {
     const kv = line.match(/^([A-Za-z ]+):\s*(.+)$/);
     if (kv) identity[kv[1].trim()] = kv[2].trim();
   });
 
   const seasons = [];
-  const histPart = block.split("### Season history")[1] || "";
-  histPart.split(/^#### /m).slice(1).forEach((chunk) => {
+  (block.split("### Season history")[1] || "").split(/^#### /m).slice(1).forEach((chunk) => {
     const lines = chunk.split("\n").map((l) => l.trim()).filter(Boolean);
     const head = lines[0].match(/^(\d{4})\s*[—-]\s*(.+)$/);
-    const season = { year: head ? head[1] : "?", game: head ? head[2] : "?", record: null, ranks: [], awards: [] };
+    const s = { year: head ? head[1] : "?", game: head ? head[2] : "?", record: null, ranks: [], awards: [] };
     lines.slice(1).forEach((line) => {
       let mm;
-      if ((mm = line.match(/^Record:\s*(.+)$/))) season.record = mm[1];
+      if ((mm = line.match(/^Record:\s*(.+)$/))) s.record = mm[1];
       else if ((mm = line.match(/^Event:\s*(.+?)\s*[—-]\s*quals rank\s*(\d+)\s*of\s*(\d+)$/)))
-        season.ranks.push({ event: mm[1], rank: +mm[2], of: +mm[3] });
+        s.ranks.push({ event: mm[1], rank: +mm[2], of: +mm[3] });
       else if ((mm = line.match(/^Award:\s*(.+?)\s*[—-]\s*(.+)$/)))
-        season.awards.push({ name: mm[1], event: mm[2] });
+        s.awards.push({ name: mm[1], event: mm[2] });
     });
-    seasons.push(season);
+    seasons.push(s);
   });
   return { identity, seasons };
 }
 
-/* Parse §3 logo/source links table. */
 function parseLinks(md) {
   const sec = section(md, "## 3. Logo links", /^## /m);
   const links = [];
@@ -195,95 +318,149 @@ function parseLinks(md) {
     const cells = line.split("|").map((c) => c.trim());
     if (cells.length < 4 || /^-+$/.test(cells[1] || "-")) return;
     const linkMatch = (cells[2] || "").match(/\[([^\]]+)\]\((https?:[^)]+)\)/) || (cells[2] || "").match(/(https?:\S+)/);
-    if (linkMatch) links.push({ label: cells[1], url: linkMatch[2] || linkMatch[1] });
+    if (linkMatch && cells[1] !== "Source") links.push({ label: cells[1], url: linkMatch[2] || linkMatch[1] });
   });
   return links;
 }
 
-/* Parse §4 achievements bullets into (year, text) cards. */
 function parseAchievements(md) {
   const sec = section(md, "## 4. Achievements", /^## /m);
   const items = [];
   sec.split("\n").forEach((line) => {
     const t = line.trim();
     if (!t.startsWith("- ")) return;
-    const mm = t.slice(2).match(/^\*\*(.+?)\*\*\s*[—-]\s*(.+)$/);
-    if (mm) items.push({ year: mm[1].replace(/\*/g, ""), text: mm[2] });
-    else items.push({ year: "", text: t.slice(2) });
+    const mm = t.slice(2).match(/^\*\*(.+?)\*\*\s*(?:\*[^*]+\*)?\s*[—-]\s*(.+)$/); // **Title** *(optional note)* — text
+    if (mm) {
+      const y = mm[1].match(/^\d{4}/);
+      items.push({ year: y ? y[0] : "", title: mm[1], text: mm[2] });
+    } else if (items.length) items[items.length - 1].text += " " + t.slice(2);
   });
   return items;
 }
 
-function render(data, links, achievements) {
+function parseWorldChampAnswer(md) {
+  // needle must match DATA.md's heading exactly (straight quotes)
+  const sec = section(md, '### "Did they win the world championship?', /^## /m);
+  return sec.split("\n").map((l) => l.trim()).filter(Boolean)
+    .map(mdInline).join("</p><p>");
+}
+
+function bestFinish(season) {
+  if (!season.ranks.length) return null;
+  return season.ranks.reduce((a, b) => (b.rank / b.of < a.rank / a.of ? b : a));
+}
+
+function render(data, links, achievements, champAnswer) {
   const id = data.identity;
   const cur = data.seasons[0] || {};
 
-  document.getElementById("updated").innerHTML =
-    id["Data updated"] ? `Data updated: <b>${esc(id["Data updated"])}</b> · auto-refreshed weekly` : "";
+  document.getElementById("hero-lede").textContent =
+    [id["Organization"], id["Location"]].filter(Boolean).join(" — ");
 
-  const sub = [`FIRST Tech Challenge · ${esc(id["Region"] || "Israel")}`,
-               `Rookie year ${esc(id["Rookie year"] || "?")}`,
-               esc(cur.year ? `${cur.year} “${cur.game}”` : "")].filter(Boolean).join(" · ");
-  document.getElementById("hero-sub").textContent = sub;
-
-  const profileRows = [
-    ["Team number", id["Number"]], ["Team name", id["Name"]],
-    ["School / org", id["Organization"]], ["Location", id["Location"]],
-    ["Country", id["Country"]], ["FIRST region", id["Region"]],
-    ["Rookie year", id["Rookie year"]], ["Current season", cur.year ? `${cur.year} — ${cur.game}` : ""],
-    ["Sponsors", id["Sponsors"]],
+  const facts = [
+    ["Team", id["Number"]],
+    ["Rookie year", id["Rookie year"]],
+    ["Seasons played", data.seasons.length],
+    ["Current season", cur.year ? `${cur.year} · ${cur.game}` : ""],
   ];
-  const profile = `<section><h2>Team profile</h2><div class="profile">` +
-    profileRows.filter(([, v]) => v).map(([k, v]) =>
-      `<div class="cell"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("") +
-    `</div></section>`;
+  document.getElementById("facts").innerHTML = facts
+    .filter(([, v]) => v !== undefined && v !== null && v !== "")
+    .map(([k, v]) => `<div class="fact"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
 
-  const linksHtml = links.length
-    ? `<section><h2>Logo &amp; official links</h2><div class="links">` +
-      links.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("") +
-      `</div></section>`
-    : "";
+  const totalAwards = data.seasons.reduce((n, s) => n + s.awards.length, 0);
+  const totalEvents = data.seasons.reduce((n, s) => n + s.ranks.length, 0);
 
-  const achHtml = achievements.length
-    ? `<section><h2>Achievements — season by season</h2><div class="ach">` +
-      achievements.map((a) =>
-        `<div class="item"><div class="year">${esc(a.year)}</div><div class="txt">${mdInline(a.text)}</div></div>`).join("") +
-      `</div></section>`
-    : "";
+  const profile = `<section id="team">
+    <div class="section-head"><span class="no">01</span><h2>Team</h2></div>
+    <dl class="dl">
+      <div><dt>Team number</dt><dd>${esc(id["Number"] || "")}</dd></div>
+      <div><dt>Team name</dt><dd>${esc(id["Name"] || "")}</dd></div>
+      <div><dt>Organization</dt><dd>${esc(id["Organization"] || "")}</dd></div>
+      <div><dt>Location</dt><dd>${esc(id["Location"] || "")}</dd></div>
+      <div><dt>Country</dt><dd>${esc(id["Country"] || "")}</dd></div>
+      <div><dt>FIRST region</dt><dd>${esc(id["Region"] || "")}</dd></div>
+      <div><dt>Rookie year</dt><dd>${esc(id["Rookie year"] || "")}</dd></div>
+      <div><dt>Sponsors</dt><dd>${esc(id["Sponsors"] || "")}</dd></div>
+    </dl>
+  </section>`;
 
-  const seasonsHtml = data.seasons.length
-    ? `<section><h2>Season records &amp; awards <span style="font-size:12px;color:var(--muted);text-transform:none;letter-spacing:0">(auto-updated)</span></h2>` +
-      data.seasons.map((s) => {
-        const chips = [
-          ...s.ranks.map((r) => `<span class="chip rank" title="${esc(r.event)}">${esc(r.event)} — quals rank ${r.rank}/${r.of}</span>`),
-          ...s.awards.map((a) => `<span class="chip award" title="${esc(a.event)}">🏆 ${esc(a.name)} — ${esc(a.event)}</span>`),
-        ];
-        return `<div class="season card"><h3>${esc(s.year)} — ${esc(s.game)}</h3>` +
-          (s.record ? `<div class="record">${esc(s.record)}</div>` : `<div class="none">No official events</div>`) +
-          (chips.length ? `<div class="chips">${chips.join("")}</div>` : "") +
-          `</div>`;
-      }).join("") + `</section>`
-    : "";
+  const ach = achievements.length ? `<section id="achievements">
+    <div class="section-head"><span class="no">02</span><h2>Record — season by season</h2></div>
+    <div class="rows">
+      ${achievements.map((a) =>
+        `<div class="row"><div class="year">${esc(a.year)}</div><div class="body"><strong>${esc(a.title)}</strong> — ${mdInline(a.text)}</div></div>`).join("")}
+    </div>
+    ${champAnswer ? `<div class="aside"><div class="aside-title">Did they win the world championship?</div><p>${champAnswer}</p></div>` : ""}
+  </section>` : "";
 
-  document.getElementById("content").innerHTML = profile + linksHtml + achHtml + seasonsHtml;
+  const seasonRows = data.seasons.map((s) => {
+    const best = bestFinish(s);
+    const m = (s.record || "").match(/^(\d+)-(\d+)-(\d+)/);
+    const rec = m ? `${m[1]}–${m[2]}–${m[3]}` : "—";
+    return `<tr>
+      <td class="season-year">${esc(s.year)}<span class="sub">${esc(s.game)}</span></td>
+      <td class="num">${rec}</td>
+      <td class="num">${s.ranks.length || "—"}</td>
+      <td>${best ? `${best.rank} of ${best.of}<span class="sub">${esc(best.event)}</span>` : "—"}</td>
+      <td class="num">${s.awards.length || "—"}</td>
+    </tr>`;
+  }).join("");
+
+  const seasons = `<section id="seasons">
+    <div class="section-head"><span class="no">03</span><h2>Seasons</h2></div>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Season</th><th>W–L–T</th><th>Events</th><th>Best qual. finish</th><th>Awards</th></tr></thead>
+      <tbody>${seasonRows}</tbody>
+    </table></div>
+  </section>`;
+
+  const awardRows = data.seasons.flatMap((s) =>
+    s.awards.map((a) =>
+      `<tr><td class="num">${esc(s.year)}</td><td>${esc(a.name)}</td><td>${esc(a.event)}</td></tr>`)).join("");
+
+  const awards = awardRows ? `<section id="awards">
+    <div class="section-head"><span class="no">04</span><h2>Awards — ${totalAwards} total</h2></div>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Season</th><th>Award</th><th>Event</th></tr></thead>
+      <tbody>${awardRows}</tbody>
+    </table></div>
+  </section>` : "";
+
+  const linkRows = links.map((l) =>
+    `<a href="${esc(l.url)}" target="_blank" rel="noopener"><span>${esc(l.label)}</span><span>${esc(l.url.replace(/^https?:\/\//, ""))}</span></a>`).join("");
+
+  const linksHtml = links.length ? `<section id="links">
+    <div class="section-head"><span class="no">05</span><h2>Official profiles</h2></div>
+    <div class="linklist">${linkRows}</div>
+    <p style="margin-top:16px;color:var(--muted);font-size:13px">
+      ${totalEvents} official events with qualification results on record.
+    </p>
+  </section>` : "";
+
+  document.getElementById("content").innerHTML = profile + ach + seasons + awards + linksHtml;
+
+  const upd = id["Data updated"];
+  if (upd) {
+    document.getElementById("footer-updated").innerHTML =
+      `Data current as of <a href="DATA.md">${esc(upd)}</a>`;
+  }
 }
 
 async function main() {
-  const content = document.getElementById("content");
   try {
     const res = await fetch("DATA.md", { cache: "no-store" });
-    if (!res.ok) throw new Error("DATA.md fetch failed: HTTP " + res.status);
+    if (!res.ok) throw new Error("HTTP " + res.status);
     const md = await res.text();
 
     const data = parseLiveBlock(md);
-    if (!data || !data.identity["Number"]) throw new Error("Could not find the live team data block in DATA.md");
+    if (!data || !data.identity["Number"]) throw new Error("Live team data block not found in DATA.md");
 
-    const links = parseLinks(md);
-    const achievements = parseAchievements(md);
-    render(data, links, achievements);
+    render(data, parseLinks(md), parseAchievements(md), parseWorldChampAnswer(md));
   } catch (err) {
-    content.innerHTML = `<div class="error"><b>Could not load DATA.md.</b><br>${esc(String(err.message || err))}<br><br>
-      If you opened this file directly (file://), serve it instead: <code>python3 -m http.server 8000</code> → http://localhost:8000</div>`;
+    document.getElementById("content").innerHTML =
+      `<div class="error"><strong>Data could not be loaded.</strong><br>${esc(String(err.message || err))}<br><br>
+       If you opened this file directly (file://), serve the folder instead:
+       <code>python3 -m http.server 8000</code> → <code>http://localhost:8000</code></div>`;
   }
 }
 main();
