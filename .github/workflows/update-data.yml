@@ -1,0 +1,71 @@
+name: Update team data + deploy site
+
+# Auto-updates DATA.md weekly (scrapes FIRST's official event pages),
+# commits the change, then deploys the website (DATA.md + index.html)
+# to GitHub Pages. Also runs on demand from the Actions tab.
+
+on:
+  schedule:
+    - cron: "0 6 * * 0" # every Sunday 06:00 UTC
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-and-deploy
+  cancel-in-progress: false
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Update DATA.md
+        run: python3 update_team_data.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add DATA.md
+          if git diff --cached --quiet; then
+            echo "DATA.md unchanged — nothing to commit."
+          else
+            git commit -m "Auto-update DATA.md (team 18833 live data) [skip ci]"
+            git push
+          fi
+
+  deploy:
+    needs: update-data
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
