@@ -54,7 +54,11 @@
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-  @media (min-width: 821px) { .wrap { padding: 0 32px; } }
+  /* Content column sits clearly right of center on large screens.
+     Small screens keep symmetric padding so nothing clips either edge. */
+  @media (min-width: 821px) {
+    .wrap { padding: 0 32px 0 clamp(64px, 15vw, 260px); }
+  }
   @media (max-width: 480px) { .wrap { padding: 0 16px; } }
 
   /* ---------- header ---------- */
