@@ -54,12 +54,8 @@
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-  /* Content sits right of center on large screens (left-biased padding);
-     stays symmetric on small screens so nothing clips either edge. */
-  @media (min-width: 821px) {
-    .wrap { padding: 0 32px 0 clamp(48px, 9vw, 130px); }
-  }
-  @media (max-width: 480px) { .wrap { padding: 0 16px 0 24px; } }
+  @media (min-width: 821px) { .wrap { padding: 0 32px; } }
+  @media (max-width: 480px) { .wrap { padding: 0 16px; } }
 
   /* ---------- header ---------- */
   .site-header {
@@ -88,7 +84,6 @@
   /* ---------- hero ---------- */
   .hero { padding: 56px 0 48px; border-bottom: 1px solid var(--line); }
   .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: end; }
-  @media (min-width: 821px) { .hero-grid { padding-right: clamp(0px, 3vw, 40px); } }
   .hero h1 { overflow-wrap: break-word; }
   @media (max-width: 820px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
 
