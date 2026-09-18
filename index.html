@@ -175,6 +175,32 @@
   .aside p { font-size: 15.5px; }
   .aside p + p { margin-top: 8px; }
 
+  /* robots — two synced carousels: YouTube videos + photo (video thumbnail) */
+  .robots { max-width: 900px; margin-inline: auto; }
+  .robot-track { overflow: hidden; border: 1px solid var(--line-strong); background: var(--ink); }
+  .robot-slides { display: flex; transition: transform .45s ease; }
+  .robot-slide { flex: 0 0 100%; min-width: 0; position: relative; aspect-ratio: 16 / 9; }
+  .robot-slide iframe, .robot-slide img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    border: 0; object-fit: cover; display: block;
+  }
+  .rob-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 16px; }
+  .rob-btn {
+    width: 42px; height: 42px; border: 1px solid var(--line-strong);
+    background: var(--surface); color: var(--ink); font-family: inherit;
+    font-size: 17px; line-height: 1; cursor: pointer;
+  }
+  .rob-btn:hover { background: var(--ink); color: var(--paper); }
+  .rob-count {
+    min-width: 72px; text-align: center; font-size: 13px; font-weight: 700;
+    letter-spacing: .14em; font-feature-settings: "tnum";
+  }
+  #robots-caption { text-align: center; margin: 24px 0; font-weight: 700; font-size: 15.5px; }
+  #robots-caption .rob-sub {
+    display: block; color: var(--muted); font-weight: 400; font-size: 13px;
+    margin-top: 2px; letter-spacing: .06em; text-transform: uppercase;
+  }
+
   /* tables */
   table { width: 100%; border-collapse: collapse; font-feature-settings: "tnum"; }
   caption { text-align: left; }
@@ -233,6 +259,7 @@
     <nav class="site-nav" aria-label="Sections">
       <a href="#team">Team</a>
       <a href="#achievements">Record</a>
+      <a href="#robots">Robots</a>
       <a href="#seasons">Seasons</a>
       <a href="#awards">Awards</a>
       <a href="#links">Links</a>
@@ -351,6 +378,22 @@ function parseAchievements(md) {
   return items;
 }
 
+function parseRobots(md) {
+  // "### Robots" table inside §4: | Robot | Season | Game | YouTube |
+  const sec = section(md, "### Robots", /^## /m);
+  const robots = [];
+  sec.split("\n").forEach((line) => {
+    const t = line.trim();
+    if (!t.startsWith("|")) return;
+    const cells = t.split("|").slice(1, -1).map((c) => c.trim());
+    if (cells.length < 4 || cells[0] === "Robot" || /^-{3,}$/.test(cells[0])) return;
+    const vm = cells[3].match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
+    if (!vm) return;
+    robots.push({ name: cells[0], season: cells[1], game: cells[2], videoId: vm[1] });
+  });
+  return robots;
+}
+
 function parseWorldChampAnswer(md) {
   // needle must match DATA.md's heading exactly (straight quotes)
   const sec = section(md, '### "Did they win the world championship?', /^## /m);
@@ -363,7 +406,46 @@ function bestFinish(season) {
   return season.ranks.reduce((a, b) => (b.rank / b.of < a.rank / a.of ? b : a));
 }
 
-function render(data, links, achievements, champAnswer) {
+/* Two synced carousels: moving either one (buttons or swipe) moves the other. */
+function initRobotCarousels(robots) {
+  const cap = document.getElementById("robots-caption");
+  const caption = (i) => {
+    const r = robots[i];
+    cap.innerHTML = `${String(i + 1).padStart(2, "0")} — ${esc(r.name)}<span class="rob-sub">${mdInline(r.season)}</span>`;
+  };
+
+  function make(rootId, other) {
+    const root = document.getElementById(rootId);
+    const slides = root.querySelector(".robot-slides");
+    const countEl = root.querySelector(".rob-count");
+    let i = 0;
+    const go = (n, fromSync) => {
+      i = ((n % robots.length) + robots.length) % robots.length;
+      slides.style.transform = `translateX(-${i * 100}%)`;
+      countEl.textContent = `${String(i + 1).padStart(2, "0")} / ${String(robots.length).padStart(2, "0")}`;
+      caption(i);
+      if (!fromSync && other) other.go(i, true);
+    };
+    root.querySelector(".rob-prev").addEventListener("click", () => go(i - 1));
+    root.querySelector(".rob-next").addEventListener("click", () => go(i + 1));
+    let x0 = null;
+    root.addEventListener("pointerdown", (e) => { x0 = e.clientX; });
+    root.addEventListener("pointerup", (e) => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) go(dx > 0 ? i - 1 : i + 1);
+    });
+    go(0, true);
+    return { go };
+  }
+
+  const videos = make("robots-videos");
+  const photos = make("robots-photos", videos);
+  videos.other = photos;
+}
+
+function render(data, links, achievements, champAnswer, robots) {
   const id = data.identity;
   const cur = data.seasons[0] || {};
 
@@ -420,7 +502,7 @@ function render(data, links, achievements, champAnswer) {
   }).join("");
 
   const seasons = `<section id="seasons">
-    <div class="section-head"><span class="no">03</span><h2>Seasons</h2></div>
+    <div class="section-head"><span class="no">04</span><h2>Seasons</h2></div>
     <div class="table-scroll"><table>
       <thead><tr><th>Season</th><th>W–L–T</th><th>Events</th><th>Best qual. finish</th><th>Awards</th></tr></thead>
       <tbody>${seasonRows}</tbody>
@@ -432,7 +514,7 @@ function render(data, links, achievements, champAnswer) {
       `<tr><td class="num">${esc(s.year)}</td><td>${esc(a.name)}</td><td>${esc(a.event)}</td></tr>`)).join("");
 
   const awards = awardRows ? `<section id="awards">
-    <div class="section-head"><span class="no">04</span><h2>Awards — ${totalAwards} total</h2></div>
+    <div class="section-head"><span class="no">05</span><h2>Awards — ${totalAwards} total</h2></div>
     <div class="table-scroll"><table>
       <thead><tr><th>Season</th><th>Award</th><th>Event</th></tr></thead>
       <tbody>${awardRows}</tbody>
@@ -442,15 +524,45 @@ function render(data, links, achievements, champAnswer) {
   const linkRows = links.map((l) =>
     `<a href="${esc(l.url)}" target="_blank" rel="noopener"><span>${esc(l.label)}</span><span>${esc(l.url.replace(/^https?:\/\//, ""))}</span></a>`).join("");
 
+  const robotSlidesV = robots.map((r) =>
+    `<div class="robot-slide"><iframe src="https://www.youtube-nocookie.com/embed/${r.videoId}?rel=0" title="${esc(r.name)} — robot reveal video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`).join("");
+  const robotSlidesP = robots.map((r) =>
+    // photo = thumbnail downloaded by update-rolat.py into robots/; falls back to YouTube's copy
+    `<div class="robot-slide"><img src="robots/${r.videoId}.jpg" alt="${esc(r.name)} — robot photo (from the reveal video thumbnail)" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/${r.videoId}/maxresdefault.jpg';}"></div>`).join("");
+
+  const robotsHtml = robots.length ? `<section id="robots">
+    <div class="section-head"><span class="no">03</span><h2>Robots</h2></div>
+    <div class="robots">
+      <div class="robot-carousel" id="robots-videos">
+        <div class="robot-track"><div class="robot-slides">${robotSlidesV}</div></div>
+        <div class="rob-nav">
+          <button class="rob-btn rob-prev" type="button" aria-label="Previous robot">←</button>
+          <span class="rob-count"></span>
+          <button class="rob-btn rob-next" type="button" aria-label="Next robot">→</button>
+        </div>
+      </div>
+      <p id="robots-caption"></p>
+      <div class="robot-carousel" id="robots-photos">
+        <div class="robot-track"><div class="robot-slides">${robotSlidesP}</div></div>
+        <div class="rob-nav">
+          <button class="rob-btn rob-prev" type="button" aria-label="Previous photo">←</button>
+          <span class="rob-count"></span>
+          <button class="rob-btn rob-next" type="button" aria-label="Next photo">→</button>
+        </div>
+      </div>
+    </div>
+  </section>` : "";
+
   const linksHtml = links.length ? `<section id="links">
-    <div class="section-head"><span class="no">05</span><h2>Official profiles</h2></div>
+    <div class="section-head"><span class="no">06</span><h2>Official profiles</h2></div>
     <div class="linklist">${linkRows}</div>
     <p style="margin-top:16px;color:var(--muted);font-size:13px">
       ${totalEvents} official events with qualification results on record.
     </p>
   </section>` : "";
 
-  document.getElementById("content").innerHTML = profile + ach + seasons + awards + linksHtml;
+  document.getElementById("content").innerHTML = profile + ach + robotsHtml + seasons + awards + linksHtml;
+  if (robots.length) initRobotCarousels(robots);
 
   const upd = id["Data updated"];
   if (upd) {
@@ -468,7 +580,7 @@ async function main() {
     const data = parseLiveBlock(md);
     if (!data || !data.identity["Number"]) throw new Error("Live team data block not found in DATA.md");
 
-    render(data, parseLinks(md), parseAchievements(md), parseWorldChampAnswer(md));
+    render(data, parseLinks(md), parseAchievements(md), parseWorldChampAnswer(md), parseRobots(md));
   } catch (err) {
     document.getElementById("content").innerHTML =
       `<div class="error"><strong>Data could not be loaded.</strong><br>${esc(String(err.message || err))}<br><br>

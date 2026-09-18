@@ -24,6 +24,10 @@ python3 update_team_data.py --check  # just print what changed, no file write
 
 GitHub Actions also refreshes it weekly — see [`.github/workflows/update-data.yml`](.github/workflows/update-data.yml).
 
+**Adding a robot** (videos + photos carousel): fill `VIDEO_URL` in **`update-rolat.py`** (or pass the link on the
+command line) and run it — it appends the row to the §4 Robots table and downloads the thumbnail to `robots/`.
+The website's photo carousel uses `robots/<video-id>.jpg` and falls back to YouTube's copy if the file is missing.
+
 ### Add this to any future task list (agent instructions)
 
 When building the **Megiddo Lions website**, the agent MUST:
@@ -82,6 +86,19 @@ platform profile pages (avatars can be pulled from them):
 "18833" badge if the image 404s (this fallback is already implemented in `index.html`).*
 
 ## 4. Achievements — season by season
+
+### Robots
+
+*Team-built reveals and close-up videos on the official channel (youtube.com/@MEGIDDOLIONS). Names are the
+robots' official names; photos are pulled automatically from each video's thumbnail. Both carousels on the
+website (videos + photos) are driven from this list — keep them in sync, one entry per robot.*
+
+| Robot | Season | Game | YouTube |
+|---|---|---|---|
+| VOLT | 2020 *ULTIMATE GOAL* | ULTIMATE GOAL | https://www.youtube.com/watch?v=R_HE-k3mOAQ |
+| AR | 2022 *POWERPLAY* | POWERPLAY | https://www.youtube.com/watch?v=lmvvHXRII78 |
+| (2023 robot) | 2023 *CENTERSTAGE* | CENTERSTAGE | https://www.youtube.com/watch?v=KKyY34Vo07Y |
+| BAR | 2025 *DECODE* | DECODE | https://www.youtube.com/watch?v=cfBVDyp9w6w |
 
 - **2019 FIRST Global Challenge — Dubai, UAE (Oct 24–27)** — 🇮🇱 **Team Israel was the Megiddo Lions** (FTC 12797 + FRC 5038, Megiddo Regional high school) — ✅ verified via FIRST Global's official team page (first.global/2019-nations/israel-2019). 📌 The claim of a **2nd-place-in-the-world finish is team-provided and not independently verified**: archived official rankings list no team names and no public 2019 results document has been found. Treat as a claim until a source (photo, video, article) confirms it.
 - **2020 ULTIMATE GOAL** — rookie season per FIRST's records, no official events (COVID remote year). Recognition: *Top Ranked 3rd Place* at Israel FTC Scrimmage #2 REMOTE. 📌 Team-provided: the team was already active in the **2019–20 SKYSTONE season** — that robot is still at the school — but the season ended with no official events when COVID suspended all FIRST play in March 2020, so no FIRST record of it exists.
