@@ -81,7 +81,10 @@
     letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
   }
   .site-nav a:hover { color: var(--accent); }
-  @media (max-width: 640px) { .site-nav { display: none; } }
+  @media (max-width: 640px) {
+    .site-nav { gap: 14px; }
+    .site-nav a { font-size: 11px; letter-spacing: .1em; }
+  }
 
   /* ---------- hero ---------- */
   .hero { padding: 56px 0 48px; border-bottom: 1px solid var(--line); text-align: center; }
@@ -176,7 +179,7 @@
   .aside p + p { margin-top: 8px; }
 
   /* robots — two synced carousels: YouTube videos + photo (video thumbnail) */
-  .robots { max-width: 900px; margin-inline: auto; }
+  .robots { max-width: 620px; margin-inline: auto; }
   .robot-track { overflow: hidden; border: 1px solid var(--line-strong); background: var(--ink); }
   .robot-slides { display: flex; transition: transform .45s ease; }
   .robot-slide { flex: 0 0 100%; min-width: 0; position: relative; aspect-ratio: 16 / 9; }
@@ -184,18 +187,18 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     border: 0; object-fit: cover; display: block;
   }
-  .rob-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 16px; }
+  .rob-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 12px; }
   .rob-btn {
-    width: 42px; height: 42px; border: 1px solid var(--line-strong);
+    width: 36px; height: 36px; border: 1px solid var(--line-strong);
     background: var(--surface); color: var(--ink); font-family: inherit;
-    font-size: 17px; line-height: 1; cursor: pointer;
+    font-size: 15px; line-height: 1; cursor: pointer;
   }
   .rob-btn:hover { background: var(--ink); color: var(--paper); }
   .rob-count {
     min-width: 72px; text-align: center; font-size: 13px; font-weight: 700;
     letter-spacing: .14em; font-feature-settings: "tnum";
   }
-  #robots-caption { text-align: center; margin: 24px 0; font-weight: 700; font-size: 15.5px; }
+  #robots-caption { text-align: center; margin: 16px 0; font-weight: 700; font-size: 15px; }
   #robots-caption .rob-sub {
     display: block; color: var(--muted); font-weight: 400; font-size: 13px;
     margin-top: 2px; letter-spacing: .06em; text-transform: uppercase;
