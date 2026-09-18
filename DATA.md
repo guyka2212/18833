@@ -95,7 +95,9 @@ website (videos + photos) are driven from this list — keep them in sync, one e
 
 | Robot | Season | Game | YouTube |
 |---|---|---|---|
+| LEVIATHAN | 2019 *FIRST GLOBAL* | FIRST GLOBAL | https://www.youtube.com/watch?v=jck91FGg_Rs |
 | VOLT | 2020 *ULTIMATE GOAL* | ULTIMATE GOAL | https://www.youtube.com/watch?v=R_HE-k3mOAQ |
+| PYTHON | 2021 *FREIGHT FRENZY* | FREIGHT FRENZY | https://www.youtube.com/watch?v=STqEn7aTBdY |
 | AR | 2022 *POWERPLAY* | POWERPLAY | https://www.youtube.com/watch?v=lmvvHXRII78 |
 | (2023 robot) | 2023 *CENTERSTAGE* | CENTERSTAGE | https://www.youtube.com/watch?v=KKyY34Vo07Y |
 | BAR | 2025 *DECODE* | DECODE | https://www.youtube.com/watch?v=cfBVDyp9w6w |
