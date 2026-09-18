@@ -399,7 +399,8 @@ function bestFinish(season) {
   return season.ranks.reduce((a, b) => (b.rank / b.of < a.rank / a.of ? b : a));
 }
 
-/* Two synced carousels: moving either one (buttons or swipe) moves the other. */
+/* Two synced carousels with ONE shared index — moving either one (buttons or
+   swipe) moves both, so the video and the photo always show the same robot. */
 function initRobotCarousels(robots) {
   const cap = document.getElementById("robots-caption");
   const caption = (i) => {
@@ -407,35 +408,35 @@ function initRobotCarousels(robots) {
     cap.innerHTML = `${String(i + 1).padStart(2, "0")} — ${esc(r.name)}<span class="rob-sub">${mdInline(r.season)}</span>`;
   };
 
-  function make(rootId, other) {
-    const root = document.getElementById(rootId);
-    const slides = root.querySelector(".robot-slides");
-    const countEl = root.querySelector(".rob-count");
-    let i = 0;
-    const go = (n, fromSync) => {
-      i = ((n % robots.length) + robots.length) % robots.length;
-      slides.style.transform = `translateX(-${i * 100}%)`;
-      countEl.textContent = `${String(i + 1).padStart(2, "0")} / ${String(robots.length).padStart(2, "0")}`;
-      caption(i);
-      if (!fromSync && other) other.go(i, true);
-    };
-    root.querySelector(".rob-prev").addEventListener("click", () => go(i - 1));
-    root.querySelector(".rob-next").addEventListener("click", () => go(i + 1));
+  let idx = 0; // shared position of both carousels
+  const apply = () => {
+    document.querySelectorAll("#robots .robot-slides").forEach((s) => {
+      s.style.transform = `translateX(-${idx * 100}%)`;
+    });
+    document.querySelectorAll("#robots .rob-count").forEach((c) => {
+      c.textContent = `${String(idx + 1).padStart(2, "0")} / ${String(robots.length).padStart(2, "0")}`;
+    });
+    caption(idx);
+  };
+  const go = (n) => {
+    idx = ((n % robots.length) + robots.length) % robots.length;
+    apply();
+  };
+
+  document.querySelectorAll("#robots .robot-carousel").forEach((root) => {
+    root.querySelector(".rob-prev").addEventListener("click", () => go(idx - 1));
+    root.querySelector(".rob-next").addEventListener("click", () => go(idx + 1));
     let x0 = null;
     root.addEventListener("pointerdown", (e) => { x0 = e.clientX; });
     root.addEventListener("pointerup", (e) => {
       if (x0 === null) return;
       const dx = e.clientX - x0;
       x0 = null;
-      if (Math.abs(dx) > 40) go(dx > 0 ? i - 1 : i + 1);
+      if (Math.abs(dx) > 40) go(dx > 0 ? idx - 1 : idx + 1);
     });
-    go(0, true);
-    return { go };
-  }
+  });
 
-  const videos = make("robots-videos");
-  const photos = make("robots-photos", videos);
-  videos.other = photos;
+  apply();
 }
 
 function render(data, links, achievements, robots) {
