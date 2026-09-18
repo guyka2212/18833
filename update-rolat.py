@@ -7,7 +7,7 @@
 
 Or do it all on the command line:
 
-    python3 update-rolat.py "https://www.youtube.com/watch?v=cfBVDyp9w6w" --name "BAR" --season "2025 *DECODE*" --game "DECODE"
+    python3 update-rolat.py "https://www.youtube.com/watch?v=cfBVDyp9w6w" --name "BAR" --year 2024 --season-name "INTO THE DEEP"
 
 What it does
   1. Pulls the 11-character video ID out of the YouTube link.
@@ -29,10 +29,11 @@ import urllib.request
 from pathlib import Path
 
 # ------------------------------------------------------------------ ✏️ EDIT ME
-VIDEO_URL = ""   # paste the full YouTube link of the robot's video
-ROBOT_NAME = ""  # e.g. "BAR"            — leave empty to use "(YEAR robot)"
-SEASON = ""      # e.g. "2025 *DECODE*"  — leave empty for the team's current season
-GAME = ""        # e.g. "DECODE"         — leave empty to reuse the season's game name
+VIDEO_URL = ""    # paste the full YouTube link of the robot's video
+ROBOT_NAME = ""   # e.g. "BAR"            — leave empty to use "(YEAR robot)"
+YEAR = ""         # e.g. 2024             — the FIRST season year (2024 = the 2024–25 season)
+SEASON_NAME = ""  # e.g. "INTO THE DEEP"  — the season/game name
+GAME = ""         # e.g. "INTO THE DEEP"  — leave empty to reuse SEASON_NAME
 # -------------------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
@@ -94,8 +95,11 @@ def main() -> None:
     p = argparse.ArgumentParser(description="Add a robot (video + photo) to the website's Robots section.")
     p.add_argument("url", nargs="?", default=VIDEO_URL, help="YouTube link of the robot's video")
     p.add_argument("--name", default=ROBOT_NAME, help='robot name, e.g. "BAR"')
-    p.add_argument("--season", default=SEASON, help='season cell, e.g. "2025 *DECODE*"')
-    p.add_argument("--game", default=GAME, help='game name, e.g. "DECODE"')
+    p.add_argument("--season", default="", help='full season cell, e.g. "2024 *INTO THE DEEP*" (overrides --year/--season-name)')
+    p.add_argument("--year", default=str(YEAR) if YEAR else "", help="season year, e.g. 2024 (= the 2024–25 season)")
+    p.add_argument("--season-name", "--sesson-name", dest="season_name", default=SEASON_NAME,
+                   help='season/game name, e.g. "INTO THE DEEP"')
+    p.add_argument("--game", default=GAME, help="game column (defaults to the season name)")
     p.add_argument("--skip-download", action="store_true", help="do not download the thumbnail")
     a = p.parse_args()
 
@@ -111,12 +115,18 @@ def main() -> None:
 
     season, game = a.season, a.game
     if not season:
-        season, auto_game = current_season(md)
-        game = game or auto_game
+        if a.season_name and not a.year:
+            sys.exit("✗ Pass --year together with --season-name (or use --season, or leave both empty for the current season).")
+        if a.year or a.season_name:
+            season = f"{a.year} *{a.season_name}*" if a.year and a.season_name else str(a.year or f"*{a.season_name}*")
+            game = game or a.season_name
+        else:
+            season, auto_game = current_season(md)
+            game = game or auto_game
     elif not game:
         # '2025 *DECODE*' -> 'DECODE'
         game = re.sub(r"[*_]", "", re.sub(r"^\s*\d{4}\s*", "", season)).strip() or "—"
-    name = a.name or "(new robot)"
+    name = a.name or (f"({a.year} robot)" if a.year else "(new robot)")
 
     row = f"| {name} | {season} | {game} | https://www.youtube.com/watch?v={vid} |"
     DATA_MD.write_text(insert_row(md, row), encoding="utf-8")
