@@ -51,12 +51,18 @@ When building the **Megiddo Lions website**, the agent MUST:
 | **From** | Regional Council of Megiddo, Z (Northern District), Israel |
 | **Country** | Israel 🇮🇱 |
 | **Region (FIRST)** | ISR — Israel |
-| **Rookie year** | 2020 (team founded for the 2020 *ULTIMATE GOAL* season) |
+| **Rookie year** | 2020 (FIRST's designator = the **2020–21** *ULTIMATE GOAL* season — the team's first *official* season. The team was already building and operating in the 2019–20 *SKYSTONE* season, but COVID ended that season with no official events recorded, so FIRST counts 2020 as the rookie year) |
 | **Current season** | 2025 *DECODE* |
 | **Sponsors** | Megiddo high school |
 
 The team is named after **Tel Megiddo** (Armageddon), the famous ancient site in the Megiddo Regional Council —
 hence "Megiddo Lions".
+
+**Season-naming note:** FIRST's rookie year "2020" means the **2020–21** *ULTIMATE GOAL* season. The team was
+already active in the 2019–20 *SKYSTONE* season (team-provided: that robot is still at the school), but that
+season produced **no official events** — COVID suspended all FIRST play in March 2020 — so FIRST's records (and
+the live data in §5) start at 2020. Note the school's older FTC team, **12797 — also named Megiddo Lions**
+(rookie 2017, Ein Hashofet), shares the name; its 2019 SKYSTONE page likewise shows no official events.
 
 ## 3. Logo links
 
@@ -78,7 +84,7 @@ platform profile pages (avatars can be pulled from them):
 ## 4. Achievements — season by season
 
 - **2019 FIRST Global Challenge — Dubai, UAE (Oct 24–27)** — 🇮🇱 **Team Israel was the Megiddo Lions** (FTC 12797 + FRC 5038, Megiddo Regional high school) — ✅ verified via FIRST Global's official team page (first.global/2019-nations/israel-2019). 📌 The claim of a **2nd-place-in-the-world finish is team-provided and not independently verified**: archived official rankings list no team names and no public 2019 results document has been found. Treat as a claim until a source (photo, video, article) confirms it.
-- **2020 ULTIMATE GOAL** — rookie season, no official events (COVID remote year). Recognition: *Top Ranked 3rd Place* at Israel FTC Scrimmage #2 REMOTE.
+- **2020 ULTIMATE GOAL** — rookie season per FIRST's records, no official events (COVID remote year). Recognition: *Top Ranked 3rd Place* at Israel FTC Scrimmage #2 REMOTE. 📌 Team-provided: the team was already active in the **2019–20 SKYSTONE season** — that robot is still at the school — but the season ended with no official events when COVID suspended all FIRST play in March 2020, so no FIRST record of it exists.
 - **2021 FREIGHT FRENZY** — 🏆 **Israel Championship — Ashram Division CHAMPIONS** (event champions), **Inspire Award 2nd Place** at the Israel Championship, **Finalist Alliance 1st Team Selected** at the Israel Championship, **Design Award** at the Israel Championship, **Winning Alliance Captain** at Israel ISR Scrimmage #2.
 - **2022 POWERPLAY** — 🏆 **Inspire Award 1st Place at the Israel Championship** (Israel's highest team award → invited to the FIRST World Championship, Houston, April 2023), Solar Division Finalist Alliance Captain, ranked 2nd in Solar Division qualifications; competed at the **FIRST World Championship Houston 2023 — Franklin Division** (rank 23 of 48).
 - **2023 CENTERSTAGE** — Israel Championship Shemer Division: rank 1 of 20 in qualifications, alliance captain; Motivate Award at IL Qualifier #2 Agnon and at the Israel Championship.
@@ -111,7 +117,7 @@ Rookie year: 2020
 Current season: 2025
 Current season name: DECODE
 Sponsors: Megiddo high school
-Data updated: 2026-09-17
+Data updated: 2026-09-18
 
 ### Season history
 #### 2025 — DECODE
@@ -190,6 +196,9 @@ Best-of-all-time summary (verify against Section 5):
   FIRST Global's official team page: `https://first.global/2019-nations/israel-2019/` (archived). The reported
   **2nd-place-in-the-world placement is team-provided and NOT independently verified** (official rankings archives
   carry no team names; no public results document found — checked 2026-09-17).
+- **2019–20 SKYSTONE pre-rookie activity:** the team was building and operating in the 2019–20 season (a
+  SKYSTONE robot remains at the school) — 📌 team-member-provided (2026-09-18); FIRST has no record of team 18833
+  before the 2020 season (its 2019 page returns 404), so this cannot be verified from official sources.
 - All FTC facts above were verified against those sources on **2026-09-17**.
 
 ## 8. Website
