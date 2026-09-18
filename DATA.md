@@ -108,14 +108,6 @@ website (videos + photos) are driven from this list — keep them in sync, one e
 - **2024 INTO THE DEEP** — Israel Championship Pacific Division finalist alliance (1st team selected); Think Award at the Israel Championship; Finalist Alliance Captain + Connect Award at Qualifier 2 Neptune League; Control Award 3rd Place at the **European Premier Event** (off-season invitational, Eindhoven NL); rank 10 of 48 in the European Premier Event Escher Division qualifications.
 - **2025 DECODE** *(current)* — Think Award + Finalist Alliance 1st Team Selected at Qualifier 1 Codex League; Think Award + alliance captain (rank 2 of 24) at Qualifier 2 Codex League.
 
-### "Did they win the world championship?" — the answer
-
-**No.** Team 18833 has **never won the FTC World Championship**. Their best international results are:
-- **2019:** 🇮🇱 **Team Israel at the FIRST Global Challenge, Dubai = the Megiddo Lions** (FTC 12797 + FRC 5038) — verified. The reported **2nd place in the world** remains a **team-provided claim, not independently verified**.
-- **2021:** 🏆 **Champions of the Israel Championship, Ashram Division** (division of the national championship — *not* the World Championship).
-- **2022:** 🏆 **Inspire Award, Israel Championship** (Israel's highest honor; earned a spot at the **World Championship in Houston 2023**, where they competed in the Franklin Division and finished qualifications ranked **23rd of 48 teams**, no playoff appearance).
-- **2024:** invited to the **European Premier Event** (a strong inter-regional off-season event, ~48 teams), Control Award 3rd place, rank 10 of 48 in Escher Division quals.
-
 ## 5. Live team data
 
 *Content between the `BEGIN LIVE TEAM DATA` and `END LIVE TEAM DATA` markers is **auto-generated** by

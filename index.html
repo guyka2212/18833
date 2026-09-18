@@ -394,13 +394,6 @@ function parseRobots(md) {
   return robots;
 }
 
-function parseWorldChampAnswer(md) {
-  // needle must match DATA.md's heading exactly (straight quotes)
-  const sec = section(md, '### "Did they win the world championship?', /^## /m);
-  return sec.split("\n").map((l) => l.trim()).filter(Boolean)
-    .map(mdInline).join("</p><p>");
-}
-
 function bestFinish(season) {
   if (!season.ranks.length) return null;
   return season.ranks.reduce((a, b) => (b.rank / b.of < a.rank / a.of ? b : a));
@@ -445,7 +438,7 @@ function initRobotCarousels(robots) {
   videos.other = photos;
 }
 
-function render(data, links, achievements, champAnswer, robots) {
+function render(data, links, achievements, robots) {
   const id = data.identity;
   const cur = data.seasons[0] || {};
 
@@ -485,7 +478,7 @@ function render(data, links, achievements, champAnswer, robots) {
       ${achievements.map((a) =>
         `<div class="row"><div class="year">${esc(a.year)}</div><div class="body"><strong>${esc(a.title)}</strong> — ${mdInline(a.text)}</div></div>`).join("")}
     </div>
-    ${champAnswer ? `<div class="aside"><div class="aside-title">Did they win the world championship?</div><p>${champAnswer}</p></div>` : ""}
+    ${""}
   </section>` : "";
 
   const seasonRows = data.seasons.map((s) => {
@@ -580,7 +573,7 @@ async function main() {
     const data = parseLiveBlock(md);
     if (!data || !data.identity["Number"]) throw new Error("Live team data block not found in DATA.md");
 
-    render(data, parseLinks(md), parseAchievements(md), parseWorldChampAnswer(md), parseRobots(md));
+    render(data, parseLinks(md), parseAchievements(md), parseRobots(md));
   } catch (err) {
     document.getElementById("content").innerHTML =
       `<div class="error"><strong>Data could not be loaded.</strong><br>${esc(String(err.message || err))}<br><br>
