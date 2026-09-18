@@ -100,7 +100,7 @@ website (videos + photos) are driven from this list — keep them in sync, one e
 | PYTHON | 2021 *FREIGHT FRENZY* | FREIGHT FRENZY | https://www.youtube.com/watch?v=STqEn7aTBdY |
 | AR | 2022 *POWERPLAY* | POWERPLAY | https://www.youtube.com/watch?v=lmvvHXRII78 |
 | (2023 robot) | 2023 *CENTERSTAGE* | CENTERSTAGE | https://www.youtube.com/watch?v=KKyY34Vo07Y |
-| BAR | 2025 *DECODE* | DECODE | https://www.youtube.com/watch?v=cfBVDyp9w6w |
+| BAR | 2024 *INTO THE DEEP* | INTO THE DEEP | https://www.youtube.com/watch?v=cfBVDyp9w6w |
 
 - **2019 FIRST Global Challenge — Dubai, UAE (Oct 24–27)** — 🇮🇱 **Team Israel was the Megiddo Lions** (FTC 12797 + FRC 5038, Megiddo Regional high school) — ✅ verified via FIRST Global's official team page (first.global/2019-nations/israel-2019). 📌 The claim of a **2nd-place-in-the-world finish is team-provided and not independently verified**: archived official rankings list no team names and no public 2019 results document has been found. Treat as a claim until a source (photo, video, article) confirms it.
 - **2020 ULTIMATE GOAL** — rookie season per FIRST's records, no official events (COVID remote year). Recognition: *Top Ranked 3rd Place* at Israel FTC Scrimmage #2 REMOTE. 📌 Team-provided: the team was already active in the **2019–20 SKYSTONE season** — that robot is still at the school — but the season ended with no official events when COVID suspended all FIRST play in March 2020, so no FIRST record of it exists.
