@@ -141,9 +141,12 @@ def parse_identity(html: str) -> dict:
         if not sponsor:  # value sits on the next line in FIRST's markup
             nxt = text[m.end():].lstrip().splitlines()
             sponsor = nxt[0].strip() if nxt else ""
-        identity["Sponsors"] = sponsor or None
+        # FIRST has no separate organization field; its sponsor line is the
+        # school/org. Stored as Organization only — the Sponsors row was
+        # removed from the site and DATA.md.
+        identity["Organization"] = sponsor or None
     else:
-        identity["Sponsors"] = None
+        identity["Organization"] = None
     loc = identity.get("Location") or ""
     identity["Country"] = loc.split(",")[-1].strip() if "," in loc else loc
     return identity
@@ -215,14 +218,13 @@ def render_block(name: str, identity: dict, seasons: list) -> str:
         "### Team identity",
         f"Number: {TEAM_NUMBER}",
         f"Name: {name}",
-        f"Organization: {identity.get('Sponsors') or '-'}",
+        f"Organization: {identity.get('Organization') or '-'}",
         f"Location: {identity.get('Location') or '-'}",
         f"Country: {identity.get('Country') or '-'}",
         f"Region: {identity.get('Region') or '-'}",
         f"Rookie year: {identity.get('Rookie year') or '-'}",
         f"Current season: {current['season']}",
         f"Current season name: {current['game']}",
-        f"Sponsors: {identity.get('Sponsors') or '-'}",
         f"Data updated: {today}",
         "",
         "### Season history",

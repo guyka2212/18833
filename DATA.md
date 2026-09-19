@@ -57,7 +57,6 @@ When building the **Megiddo Lions website**, the agent MUST:
 | **Region (FIRST)** | ISR — Israel |
 | **Rookie year** | 2020 (FIRST's designator = the **2020–21** *ULTIMATE GOAL* season — the team's first *official* season. The team was already building and operating in the 2019–20 *SKYSTONE* season, but COVID ended that season with no official events recorded, so FIRST counts 2020 as the rookie year) |
 | **Current season** | 2025 *DECODE* |
-| **Sponsors** | Megiddo high school |
 
 The team is named after **Tel Megiddo** (Armageddon), the famous ancient site in the Megiddo Regional Council —
 hence "Megiddo Lions".
@@ -127,7 +126,6 @@ Region: Israel
 Rookie year: 2020
 Current season: 2025
 Current season name: DECODE
-Sponsors: Megiddo high school
 Data updated: 2026-09-18
 
 ### Season history
