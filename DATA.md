@@ -55,13 +55,14 @@ When building the **Megiddo Lions website**, the agent MUST:
 | **From** | Regional Council of Megiddo, Z (Northern District), Israel |
 | **Country** | Israel 🇮🇱 |
 | **Region (FIRST)** | ISR — Israel |
-| **Rookie year** | 2020 (FIRST's designator = the **2020–21** *ULTIMATE GOAL* season — the team's first *official* season. The team was already building and operating in the 2019–20 *SKYSTONE* season, but COVID ended that season with no official events recorded, so FIRST counts 2020 as the rookie year) |
+| **Rookie year** | 2019 (displayed value. FIRST's designator is 2020 = the **2020–21** *ULTIMATE GOAL* season, the team's first *official* season — the team was already building and operating in the 2019–20 *SKYSTONE* season, but COVID ended that season with no official events recorded, so FIRST counts 2020 as the rookie year) |
 | **Current season** | 2025 *DECODE* |
 
 The team is named after **Tel Megiddo** (Armageddon), the famous ancient site in the Megiddo Regional Council —
 hence "Megiddo Lions".
 
-**Season-naming note:** FIRST's rookie year "2020" means the **2020–21** *ULTIMATE GOAL* season. The team was
+**Season-naming note:** the displayed rookie year is **2019** (the team was already building and operating then);
+FIRST's designator is "2020", which means the **2020–21** *ULTIMATE GOAL* season. The team was
 already active in the 2019–20 *SKYSTONE* season (team-provided: that robot is still at the school), but that
 season produced **no official events** — COVID suspended all FIRST play in March 2020 — so FIRST's records (and
 the live data in §5) start at 2020. Note the school's older FTC team, **12797 — also named Megiddo Lions**
@@ -123,7 +124,7 @@ Organization: Megiddo high school
 Location: Regional Council of Megiddo, Z, Israel
 Country: Israel
 Region: Israel
-Rookie year: 2020
+Rookie year: 2019
 Current season: 2025
 Current season name: DECODE
 Data updated: 2026-09-18
