@@ -127,7 +127,7 @@ Region: Israel
 Rookie year: 2019
 Current season: 2025
 Current season name: DECODE
-Data updated: 2026-09-18
+Data updated: 2026-09-20
 
 ### Season history
 #### 2025 — DECODE
